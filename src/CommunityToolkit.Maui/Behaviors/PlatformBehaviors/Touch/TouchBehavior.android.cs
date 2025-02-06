@@ -44,7 +44,7 @@ public partial class TouchBehavior
 		viewGroup = platformView.GetParentOfType<ViewGroup>();
 
 		platformView.Touch += OnTouch;
-		platformView.KeyPress += OnKeyDown;
+		platformView.KeyPress += OnKeyPressed;
 		UpdateClickHandler();
 		accessibilityManager = platformView.Context?.GetSystemService(Context.AccessibilityService) as AccessibilityManager;
 
@@ -90,7 +90,7 @@ public partial class TouchBehavior
 			{
 				view.Touch -= OnTouch;
 				view.Click -= OnClick;
-				view.KeyPress -= OnKeyDown;
+				view.KeyPress -= OnKeyPressed;
 			}
 
 			Element = null;
@@ -119,7 +119,7 @@ public partial class TouchBehavior
 		}
 	}
 
-	void OnKeyDown(object? sender, AView.KeyEventArgs e)
+	void OnKeyPressed(object? sender, AView.KeyEventArgs e)
 	{
 		if (e.KeyCode == Keycode.Space && e.Event?.Action == KeyEventActions.Up)
 		{
